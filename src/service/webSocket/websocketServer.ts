@@ -114,7 +114,7 @@ class WebSocketManager {
             }
         }
 
-        getRecordatorio({}, 'userDisconnect', '');
+        getRecordatorio({ user: userId }, 'userDisconnect', '');
     }
 
     private checkHeartbeats(): void {

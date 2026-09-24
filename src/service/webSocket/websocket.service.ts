@@ -243,7 +243,10 @@ export class WebSocketService {
                 const client = clientMetadata.socket;
 
                 if (client.readyState === WebSocket.OPEN) {
-                    if (!this.clientsAlive.get(client)) {
+                    if (!this.clientsAlive.has(client)) {
+                        this.clientsAlive.set(client, false);
+                        client.send(JSON.stringify({ topic: WebSocketTopics.PING }));
+                    } else if (!this.clientsAlive.get(client)) {
                         client.terminate();
                         console.log('Connection terminated due to inactivity');
                         this.cleanUpClient(client);

@@ -1,0 +1,32 @@
+{
+    "00" : {
+        "user": "sa",
+        "password": "sql2025SEadmin",
+        "server": "192.168.11.153",
+        "database": "ARTDECOM",
+        "port": 9788,
+        "trustServerCertificate": true,
+        "connectionTimeout": 5000,
+        "requestTimeout": 30000,
+        "pool": {
+            "max": 10,
+            "min": 0,
+            "idleTimeoutMillis": 60000
+        }
+    },
+    "XTEIN" : {
+        "user": "sa",
+        "password": "sql2025SEadmin",
+        "server": "192.168.11.153",
+        "database": "XTEIN",
+        "port": 9788,
+        "trustServerCertificate": true,
+        "connectionTimeout": 5000,
+        "requestTimeout": 30000,
+        "pool": {
+            "max": 10,
+            "min": 0,
+            "idleTimeoutMillis": 60000
+        }
+    }
+}

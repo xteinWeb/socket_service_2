@@ -135,7 +135,23 @@ export function onRespuestaEnvioCorreo(datos: any, email: any, ws: WebSocket) {
     sendMail({ body: prmJ }, ws);
 }
 
-
+async function createOAuth2Client(emailDomain: any, ws?: any) {
+    let clientId, clientSecret, refreshToken;
+    console.log("este es el dominio:" + emailDomain);
+    switch (emailDomain) {
+        case 'artdecon':
+            clientId = process.env.GOOGLE_CLIENT_ID_ARTDECON;
+            clientSecret = process.env.GOOGLE_CLIENT_SECRET_ARTDECON;
+            refreshToken = process.env.GOOGLE_REFRESH_TOKEN_ARTDECON;
+            break;
+        case 'xtein':
+            clientId = process.env.GOOGLE_CLIENT_ID_XTEIN;
+            clientSecret = process.env.GOOGLE_CLIENT_SECRET_XTEIN;
+            refreshToken = process.env.GOOGLE_REFRESH_TOKEN_XTEIN;
+            break;
+        default:
+            throw new Error('Unsupported email domain');
+    }
     const oauth2Client = new google.auth.OAuth2(clientId, clientSecret, "https://developers.google.com/oauthplayground");
     oauth2Client.setCredentials({ refresh_token: refreshToken });
     try {

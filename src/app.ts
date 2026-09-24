@@ -25,8 +25,4 @@ const wsManager = initWebSocketManager(server);
 
 new WebSocketService(wsManager);
 
-server.listen(5801, () => {
-  console.log('Server Web Socket on port', 5801 + ', http://localhost:' + 5801);
-});
-
-export default app;
+export { app, server };

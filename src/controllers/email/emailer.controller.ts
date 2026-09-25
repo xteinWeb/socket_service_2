@@ -35,7 +35,8 @@ export const parameterSendEmail = async (datos: any, ws?: any) => {
         }
 
     } catch (err) {
-        throw ws.send(JSON.stringify({ topic: 'ERRROR', data: `Error getting access token:: ${err}` }));
+        if (ws) ws.send(JSON.stringify({ topic: 'ERRROR', data: `Error en parameterSendEmail:: ${err}` }));
+        throw err;
     }
 };
 
@@ -159,8 +160,8 @@ async function createOAuth2Client(emailDomain: any, ws?: any) {
         return { clientId, clientSecret, refreshToken, accessToken: accessToken.token };
     } catch (error) {
         console.error('Error getting access token:', error);
-        throw ws.send(JSON.stringify({ topic: 'ERRROR', data: `Error getting access token:: ${error}` }));
-        ;
+        if (ws) ws.send(JSON.stringify({ topic: 'ERRROR', data: `Error getting access token:: ${error}` }));
+        throw error;
     }
 }
 
@@ -249,6 +250,6 @@ export const sendMail = async (req: any, ws: any, res_accion?: any) => {
         });
 
     } catch (error: any) {
-        ws.send(JSON.stringify({ topic: 'ERRROR', data: `Error al obtener el template de correo: ${error.message}` }));
+        if (ws) ws.send(JSON.stringify({ topic: 'ERRROR', data: `Error al enviar correo: ${error?.message || error}` }));
     }
 };

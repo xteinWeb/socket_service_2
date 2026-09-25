@@ -2,8 +2,9 @@ import { config } from "dotenv";  //leera las variables de entorno
 import express from 'express';
 // import cors from 'cors';
 import bodyParser from  'body-parser';
+import * as path from 'path';
 
-config();
+config({ path: path.join(__dirname, '../.env') });
 var app = express();
 
 // app.use( cors() );
